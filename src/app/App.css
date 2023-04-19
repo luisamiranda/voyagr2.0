@@ -5,12 +5,8 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Josefin Sans', sans-serif;
   color: #212121;
-}
-
-input[type="file"] {
-    display: none;
 }
 
 span {
@@ -42,10 +38,20 @@ span {
   background-color: #FFF176;
   border-color: #FFF176;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
+  color: #212121;
+}
+
+.btn:hover {
+  background-color: #212121;
+  color: #FFF176;
 }
 
 .btn-danger {
   color: #212121;
+}
+
+.btn:disabled {
+  background-color: #757575;
 }
 
 .container {
@@ -55,8 +61,6 @@ span {
 
 .navbar {
   color: #F6F5F1;
-  background-color: #607D8B;
-  border-color: #607D8B;
   margin: 0;
   padding: 3px 0 10px 0;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
@@ -88,13 +92,13 @@ span {
 }
 
 .panel-default {
-  border-color: #607D8B;
+  border-color: #212121;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, .5);
 }
 
 .panel-default > .panel-heading {
-  background-color: #607D8B;
-  border-color: #607D8B;
+  background-color: #212121;
+  border-color: #212121;
   text-align: center;
 }
 
@@ -204,7 +208,7 @@ span {
   border-color: #757575;
 }
 .dark-primary-color    { background: #455A64; }
-.default-primary-color { background: #607D8B; }
+.default-primary-color { background: #757575; }
 .light-primary-color   { background: #CFD8DC; }
 .text-primary-color    { color: #FFFFFF; }
 .accent-color          { background: #FFF176; }

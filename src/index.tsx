@@ -7,13 +7,17 @@ import {
 
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from './app/App';
+import CanvasContainer from './canvas/CanvasContainer';
 import Error from './error/Error';
 import Landing from './auth/Landing';
 import Suitcase from './suitcase/Suitcase';
+import Timeline from './timeline/Timeline';
 import reportWebVitals from './reportWebVitals';
 
 const firebaseConfig = {
@@ -23,12 +27,14 @@ const firebaseConfig = {
   projectId: "voyagr-59d3e",
   storageBucket: "voyagr-59d3e.appspot.com",
   messagingSenderId: "903756024411",
-  appId: "1:903756024411:web:11c69bb6e537dd6a214d7e"
+  appId: "1:903756024411:web:11c69bb6e537dd6a214d7e",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+const database = getDatabase(app); // TODO: remove if not using in this file
+const storage = getStorage(app); // TODO: remove if not using in this file
 
 const router = createBrowserRouter([
   {
@@ -43,6 +49,14 @@ const router = createBrowserRouter([
       {
         path: "/suitcase",
         element: <Suitcase/>,
+      },
+      {
+        path: "/timeline",
+        element: <Timeline/>
+      },
+      {
+        path: "canvas/:tripId/:pageId",
+        element: <CanvasContainer/>
       }
     ]
   }

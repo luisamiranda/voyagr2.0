@@ -1,43 +1,85 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom';
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getDatabase, child, push, update } from 'firebase/database';
+import { ref as dbRef} from 'firebase/database';
+import { redirect } from 'react-router-dom';
+
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 // import { LinkContainer } from 'react-router-bootstrap'
-// import { auth } from 'APP/db/firebase'
 // import { browserHistory } from 'react-router'
-// import { startNewTrip } from './utils/newTrip'
-
-// function logout () {
-//   auth
-//   .signOut()
-//   .then(() => browserHistory.push('/landing'))
-//   .catch(function(error) {
-//     let errorCode = error.code
-//     let errorMessage = error.message
-//     console.log('ERROR', errorCode, errorMessage)
-//   })
-// }
 
 
 const NavComponent: React.FC = () => {
-//   constructor () {
-//     super()
-//     this.state = {
-//       user: null,
-//       tripId: null,
-//     }
-//     this.renderButtons = this.renderButtons.bind(this)
-//   }
+    const [user, setUser] = useState<any>();
+    const [uid, setUid] = useState<any>();
+    const [tripId, setTripId] = useState<any>();
 
-//   componentWillMount () {
-//     this.unsubscribe = auth.onAuthStateChanged((user) => {
-//         this.setState({ user: user })
-//     })
-//   }
+    const auth = getAuth();
+    const db = getDatabase();
+    const navigate = useNavigate();
 
-//   componentWillUnmount () {
-//     this.unsubscribe()
-//   }
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setUser(user)
+            const uid = user.uid;
+            setUid(uid);
+        }
+        });
+    }, [user, auth])
+
+
+    const logout = () => {
+        signOut(auth).then(() => {
+            navigate('/');
+          }).catch((error) => {
+            // An error happened.
+          });
+    }
+
+    const startNewTrip = () => {
+        
+        const tripDefaultData = {
+            name: 'A Trip',
+            description: 'A description',
+            startDate: '1/1/2000',
+            startPage: " ",
+        }
+    
+        const pageDefaultData = {
+            nextPage: ' ',
+            previousPage: ' ',
+        }
+    
+        const newTripKey = push(child(dbRef(db), `/userTrips/${uid}`)).key
+        console.log("TRIP KEY", newTripKey);
+        const newPageKey = push(child(dbRef(db), `/tripPages/${newTripKey}`)).key
+        console.log(newPageKey);
+    
+        //set the startPage to be the new page key
+        tripDefaultData.startPage = newPageKey ? newPageKey : "";
+    
+        const updates: any = {}
+        //creating trip in firebase db
+        updates[`/tripInfo/${newTripKey}`] = tripDefaultData
+        updates[`/userTrips/${uid}/${newTripKey}`] = newTripKey
+        updates[`/tripUsers/${newTripKey}/${uid}`] = uid
+    
+        //creating first page of new trip in firebase db
+        updates[`/tripPages/${newTripKey}/${newPageKey}`] = newPageKey
+        updates[`/pageInfo/${newPageKey}`] = pageDefaultData
+    
+        return update(dbRef(db), updates)
+        .then(() => {
+            console.log("time to navigate")
+            navigate(`/canvas/${newTripKey}/${newPageKey}`)
+        })
+        .catch(console.error)
+    }
+
 
 //   renderButtons () {
 //     if (this.state.user && this.state.user.emailVerified) {
@@ -62,13 +104,14 @@ const NavComponent: React.FC = () => {
 
     return (
         <div>
-            <Navbar bg="dark" variant="dark">
+            <Navbar bg="dark" variant="dark" sticky="top">
                 <Container>
                 <Navbar.Brand href="/">voyagr</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="/suitcase">suitcase</Nav.Link>
-                    <Nav.Link href="/newtrip">new trip</Nav.Link>
-                    <Nav.Link href="/logout">logout</Nav.Link>
+                    <Nav.Link href="/timeline">timeline</Nav.Link>
+                    <Nav.Link href="/suitcase/">suitcase</Nav.Link>
+                    <Nav.Link onClick={startNewTrip}>new trip</Nav.Link>
+                    <Nav.Link href="/" onClick={logout}>logout</Nav.Link>
                 </Nav>
                 </Container>
             </Navbar>

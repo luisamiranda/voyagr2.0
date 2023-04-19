@@ -1,0 +1,9 @@
+body {
+  background-image: url('../../public/imgs/paper_texture.jpg');
+  background-size: cover;
+  font-family: Helvetica, sans-serif;
+}
+
+.file-upload {
+  width: 50%;
+}
