@@ -1,6 +1,6 @@
 body {
-  background-image: url('../../public/imgs/paper_texture.jpg');
-  /* background-color: antiquewhite; */
+  /* background-image: url('imgs/paper_texture.jpg'); */
+  background-color: antiquewhite;
   background-size: cover;
   font-family: Helvetica, sans-serif;
 }

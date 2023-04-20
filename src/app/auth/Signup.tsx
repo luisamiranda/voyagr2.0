@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Navigate} from 'react-router-dom';
 
-import { auth, db } from '../index'
+import { auth, db } from '../../index'
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { ref, set } from 'firebase/database';
 

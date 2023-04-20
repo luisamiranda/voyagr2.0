@@ -1,4 +1,5 @@
 body {
-    background-image: url('../../public/imgs/voyagr_landing.png');
+    background-image: 'imgs/voyagr_landing.png';
+    background-color: antiquewhite;
     background-size: cover;
 }

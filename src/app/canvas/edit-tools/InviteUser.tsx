@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 // import update from 'react/lib/update'
 import { Alert, Button, Col, Form, FormControl, FormGroup, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { inviteUser, listUsers } from '../../utils/inviteUser'
-import { db } from '../../index'
+import { db } from '../../../index'
 import { ref, get } from 'firebase/database'
 
 interface InviteUserProps {

@@ -2,7 +2,7 @@ import React,  {useState, useEffect} from 'react'
 
 //LIBRARIES
 import { connect } from 'react-redux'
-import { auth, db } from '../../index'
+import { auth, db } from '../../../index'
 import { onAuthStateChanged } from 'firebase/auth'
 import { onValue} from 'firebase/database'
 import { ref as dbRef} from 'firebase/database'

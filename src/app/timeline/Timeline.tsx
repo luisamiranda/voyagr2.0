@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 // import update from 'react/lib/update'
-import { auth, db } from '../index'
+import { auth, db } from '../../index'
 import { onAuthStateChanged } from 'firebase/auth'
 import { ref, onValue, remove } from 'firebase/database'
 

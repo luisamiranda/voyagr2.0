@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
-import { auth, db } from '../index'
+import { auth, db } from '../../index'
 import { onAuthStateChanged } from 'firebase/auth';
 import { set, onValue } from 'firebase/database';
 import { ref as dbRef} from 'firebase/database';

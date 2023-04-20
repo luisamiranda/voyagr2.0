@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { auth } from '../index'
+import { auth } from '../../index'
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 
 

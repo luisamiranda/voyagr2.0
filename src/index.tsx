@@ -12,13 +12,13 @@ import { getStorage } from "firebase/storage";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import App from './App';
-import CanvasContainer from './canvas/CanvasContainer';
-import Error from './error/Error';
-import Landing from './auth/Landing';
-import Suitcase from './suitcase/Suitcase';
-import Timeline from './timeline/Timeline';
-import reportWebVitals from './reportWebVitals';
+import App from './app/App';
+import CanvasContainer from './app/canvas/CanvasContainer';
+import Error from './app/error/Error';
+import Landing from './app/auth/Landing';
+import Suitcase from './app/suitcase/Suitcase';
+import Timeline from './app/timeline/Timeline';
+import reportWebVitals from './app/reportWebVitals';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCkGzYPNnBN1wgojYpMlid9S3yvDU52BsY",
