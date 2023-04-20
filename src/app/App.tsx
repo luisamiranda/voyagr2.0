@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom"
 
 import './App.css';
 
-import NavComponent from '../nav/NavComponent';
+import NavComponent from './nav/NavComponent';
 
 
 function App() {

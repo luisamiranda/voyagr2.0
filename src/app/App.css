@@ -1,13 +1,30 @@
 body {
-  background-image: url('../../public/imgs/voyagr_landing.png');
   background-size: cover;
   font-family: 'Josefin Sans', sans-serif;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Josefin Sans', sans-serif;
   color: #212121;
 }
+
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
 
 span {
   position:absolute;
@@ -43,6 +60,7 @@ span {
 
 .btn:hover {
   background-color: #212121;
+  border-color: #757575;
   color: #FFF176;
 }
 
@@ -86,31 +104,30 @@ span {
   font-size: 14px;
 }
 
-.panel-group {
-  width: 50%;
-  margin: 10% auto;
+.card-group {
+  width: 80%;
+  margin: 15% auto;
 }
 
-.panel-default {
-  border-color: #212121;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, .5);
-}
-
-.panel-default > .panel-heading {
+.card-header {
   background-color: #212121;
-  border-color: #212121;
+  border-color: #757575;
+  color: #F6F5F1;
   text-align: center;
 }
 
-.panel-title {
+.card-title {
   font-weight: 900;
   font-size: 22px;
-  color: #000;
+  color: #F6F5F1;
 }
 
-.panel-body {
-  background-color: #F6F5F1;
-}
+.card {
+  background-color: #212121;
+  border-color: #212121;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+  color: #F6F5F1;
+} 
 
 .trip-card {
   background-color: #F6F5F1;
@@ -207,14 +224,14 @@ span {
 #drag-canvas {
   border-color: #757575;
 }
-.dark-primary-color    { background: #455A64; }
+.dark-primary-color    { background: #212121; }
 .default-primary-color { background: #757575; }
-.light-primary-color   { background: #CFD8DC; }
+.light-primary-color   { background: #d2d2d2; }
 .text-primary-color    { color: #FFFFFF; }
 .accent-color          { background: #FFF176; }
 .primary-text-color    { color: #212121; }
 .secondary-text-color  { color: #757575; }
-.divider-color         { border-color: #F6F5F1; }
+.divider-color         { border-color: #757575; }
 
 .logout-button {
   border: 1px solid #F6F5F1;

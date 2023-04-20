@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { getDatabase, child, push, update } from 'firebase/database';
+import { auth, db } from '../index'
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { child, push, update } from 'firebase/database';
 import { ref as dbRef} from 'firebase/database';
 import { redirect } from 'react-router-dom';
 
@@ -17,8 +18,6 @@ const NavComponent: React.FC = () => {
     const [uid, setUid] = useState<any>();
     const [tripId, setTripId] = useState<any>();
 
-    const auth = getAuth();
-    const db = getDatabase();
     const navigate = useNavigate();
 
     useEffect(() => {

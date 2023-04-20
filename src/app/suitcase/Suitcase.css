@@ -1,0 +1,53 @@
+body {
+  background-image: url('../../public/imgs/paper_texture.jpg');
+  /* background-color: antiquewhite; */
+  background-size: cover;
+  font-family: Helvetica, sans-serif;
+}
+
+#suitcase-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  margin: 2%; 
+}
+
+#suitcase {
+  width: 40%;
+  /* margin: 5%; */
+}
+
+#upload{
+  width: 40%;
+}
+
+#souvenirs {
+  width: 80%;
+  margin: auto;
+}
+
+.file-upload {
+  width: 80%;
+}
+
+/*All of these styles are for the video player from the react-html5video library*/
+.rh5v-DefaultPlayer_component {
+  position: relative;
+  font-family: Helvetica;
+  font-size: 11px;
+  background-color: #000;
+}
+
+.rh5v-DefaultPlayer_video {
+  width: 200%;
+  height: 200%;
+}
+
+
+
+
+
+
+
+
+

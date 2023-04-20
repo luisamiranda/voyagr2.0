@@ -4,11 +4,11 @@ import {useNavigate} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../index'
+import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 
 
 const Login: React.FC = () => {
-  const auth = getAuth();
 
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
@@ -80,7 +80,6 @@ const Login: React.FC = () => {
         const user = userCredential.user;
         const uid = user.uid;
         setUser(user);
-        console.log("LOSER", user);
         return uid;
       })
       .then((uid) => {
@@ -130,10 +129,6 @@ const Login: React.FC = () => {
         </Button>
 
       </Form>
-      {/* {user ?
-       <Navigate to="/suitcase" replace={true}></Navigate>
-       : null
-      } */}
     </div>
   );
 }

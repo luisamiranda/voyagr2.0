@@ -12,7 +12,7 @@ import { getStorage } from "firebase/storage";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import App from './app/App';
+import App from './App';
 import CanvasContainer from './canvas/CanvasContainer';
 import Error from './error/Error';
 import Landing from './auth/Landing';
@@ -33,8 +33,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-const database = getDatabase(app); // TODO: remove if not using in this file
-const storage = getStorage(app); // TODO: remove if not using in this file
+export const db = getDatabase(app);
+export const storage = getStorage(app); 
 
 const router = createBrowserRouter([
   {

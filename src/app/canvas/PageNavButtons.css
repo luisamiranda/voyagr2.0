@@ -1,0 +1,20 @@
+#page-nav > .btn {
+    background-color: #FFF176;
+    border-color: #FFF176;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
+    color: #212121;
+}
+  
+#page-nav > .btn:hover {
+    background-color: #212121;
+    border-color: #757575;
+    color: #FFF176;
+}
+  
+#page-nav > .btn:disabled {
+    background-color: #757575;
+}
+
+#page-nav > .btn:click {
+    background-color: #757575;
+}

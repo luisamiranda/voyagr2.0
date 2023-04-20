@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Navigate} from 'react-router-dom';
 
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { getDatabase, ref, set } from 'firebase/database';
+import { auth, db } from '../index'
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { ref, set } from 'firebase/database';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 const Signup: React.FC = () => {
-  const auth = getAuth();
 
   const [name, setName] = useState<string>();
   const [email, setEmail] = useState<string>();
@@ -67,7 +67,6 @@ const Signup: React.FC = () => {
               alert("Email verification sent.");
               setUser(user);
               const uid = user.uid;
-              const db = getDatabase();
               set(ref(db, `users/${uid}`), {
                 name: name,
                 email: user.email

@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { DefaultPlayer as Video } from 'react-html5video'
 
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getDatabase, set, onValue } from 'firebase/database';
+import { auth, db } from '../index'
+import { onAuthStateChanged } from 'firebase/auth';
+import { set, onValue } from 'firebase/database';
 import { ref as dbRef} from 'firebase/database';
 import { getStorage, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { ref as storageRef } from "firebase/storage";
@@ -22,8 +24,6 @@ const Suitcase: React.FC = () => {
   const [photos, setPhotos] = useState<any[]>();
   const [videos, setVideos] = useState<any[]>();
 
-  const auth = getAuth();
-  const db = getDatabase();
   const storage = getStorage();
   const navigate = useNavigate();
 
@@ -101,60 +101,10 @@ const Suitcase: React.FC = () => {
   }
 
   return (
-    <div>
-      { user &&
-        <div id="suitcase">
-        <h1>Welcome back, {user.email}! </h1>
-          <h3>This is your suitcase. Stash your photos and videos here until you create your trip.</h3>
-
-          <Form className="file-upload"  onSubmit={handleSubmit} >
-            <Form.Group controlId="FileUploadMultiple" className="mb-3">
-              <Form.Control type="file" multiple onChange={handleUploadChange}/>
-            </Form.Group>
-            <p className="help-block">
-              File types supported: .jpg, .png, .gif, .mp4, .mov, .mp3
-            </p>
-
-            {/*  media type select */}
-            <Form.Group>
-              <Form.Select
-                id="Form.Select.MediaType"
-                aria-label="media type"
-                placeholder="Select photos or videos"
-                onChange={handleMediaTypeChange}
-              >
-                <option value="photos">photos</option>
-                <option value="videos">videos</option>
-              </Form.Select>
-            </Form.Group>
-            <p className="help-block">
-              {/* File Types Supported: Video, Pictures */}
-            </p>
-
-            {/* trip selector */}
-            <Form.Group>
-              <Form.Label>Add to trip (optional)</Form.Label> <br />
-              <Form.Select
-                id="Form.Select.Trip"
-                aria-label="trip select"
-                >
-              <option value="select">select</option>
-              {trips ? trips.tripIds.map((tripId: number, idx: number) => {
-                return (
-                  <option key={idx} value={tripId}>{trips[tripId]}</option>
-                )
-              }) : <option>You don't have any trips yet.</option> }
-
-              </Form.Select> 
-            </Form.Group>
-            <br />
-            <Button type="submit">Upload</Button>
-          </Form>
-          </div>
-        }
-        {/* media display */}
-          <div>
-          <h2>Your Souvenirs</h2><br />
+    <div id="suitcase-container">
+      {/* media display */}
+      <div id="souvenirs">
+          <h1>Your Souvenirs</h1><br />
           { photos && photoKeys ?  
             photoKeys.map((photoKey: any) => {
                 let photo = photos[photoKey];
@@ -185,7 +135,6 @@ const Suitcase: React.FC = () => {
                     margin: 1 + 'em',
                   }}>
                     <Video
-                        height={300}
                         value={videoKey}
                         type={video}
                         className={`element-size-small`}
@@ -202,6 +151,65 @@ const Suitcase: React.FC = () => {
               }) 
               : <p>Upload some photos!</p>}
         </div>
+      { user &&
+        <div id="suitcase flex-container">
+          <div id="flex-item">
+            <h1>Welcome back, {user.email}! </h1>
+            <h4>This is your suitcase. Stash your photos and videos here until you create your trip.</h4>
+          </div>
+          <div id="upload flex-item">
+            <Card>
+              <Card.Body>
+              <Form className="file-upload"  onSubmit={handleSubmit} >
+                <Form.Group controlId="FileUploadMultiple" className="mb-3">
+                  <Form.Control type="file" multiple onChange={handleUploadChange}/>
+                </Form.Group>
+                <p className="help-block">
+                  File types supported: .jpg, .png, .gif, .mp4, .mov, .mp3
+                </p>
+
+                {/*  media type select */}
+                <Form.Group>
+                  <Form.Select
+                    id="Form.Select.MediaType"
+                    aria-label="media type"
+                    placeholder="Select photos or videos"
+                    onChange={handleMediaTypeChange}
+                  >
+                    <option value="photos">photos</option>
+                    <option value="videos">videos</option>
+                  </Form.Select>
+                </Form.Group>
+                <p className="help-block">
+                  {/* File Types Supported: Video, Pictures */}
+                </p>
+
+                {/* trip selector */}
+                <Form.Group>
+                  <Form.Label>Add to trip (optional)</Form.Label> <br />
+                  <Form.Select
+                    id="Form.Select.Trip"
+                    aria-label="trip select"
+                    >
+                  <option value="select">select</option>
+                  {trips ? trips.tripIds.map((tripId: number, idx: number) => {
+                    return (
+                      <option key={idx} value={tripId}>{trips[tripId]}</option>
+                    )
+                  }) : <option>You don't have any trips yet.</option> }
+                  </Form.Select> 
+                </Form.Group>
+
+                <br />
+
+                <Button type="submit">Upload</Button>
+              </Form>
+            </Card.Body>
+          </Card>
+          </div>
+        </div>
+        }
+        <br />
     </div>
   );
 }

@@ -5,7 +5,9 @@ import Card from 'react-bootstrap/Card'
 import Signup from './Signup'
 import Login from './Login'
 // import OAuth from './OAuth'
-// import {auth} from 'APP/db/firebase' // even though it isn't used, it initializes firebase auth
+import { auth } from '../index' // even though it isn't used, it initializes firebase auth
+
+import './Landing.css'
 
 const Landing: React.FC = () => {
 
