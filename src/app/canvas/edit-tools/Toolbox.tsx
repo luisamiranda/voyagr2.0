@@ -37,9 +37,13 @@ const Toolbox = ({ tripInfo, tripInfoRef, selected, tripId, pageInfo, pageInfoRe
     // const [address, setAddress] = useState<any>();
     const [photos, setPhotos] = useState<any>();
     const [videos, setVideos] = useState<any>();
+    // eslint-disable-next-line
     const [title, setTitle] = useState<any>();
+    // eslint-disable-next-line
     const [description, setDescription] = useState<any>();
+    // eslint-disable-next-line
     const [startDate, setStartDate] = useState<any>();
+    // eslint-disable-next-line
     const [type, setType] = useState<any>();
 
     const photoKeys = photos && Object.keys(photos)

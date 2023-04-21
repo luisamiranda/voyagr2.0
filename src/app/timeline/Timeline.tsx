@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
 
 const Timeline: React.FC = () => {
+    // eslint-disable-next-line
     const [user, setUser] = useState<any>();
     const [uid, setUid] = useState<any>();
     const [trips, setTrips] = useState<any>();

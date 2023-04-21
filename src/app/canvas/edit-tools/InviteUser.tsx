@@ -13,7 +13,8 @@ const InviteUser = ({ tripId, pageId }: InviteUserProps) => {
     const [email, setEmail] = useState<any>();
     const [showInvalidAlert, setShowInvalidAlert] = useState<boolean>(false);
     const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
-    const [collaboratorNames, _] = useState<any[]>();
+    // eslint-disable-next-line
+    const [collaboratorNames, setCollaboratorNames] = useState<any[]>();
 
     useEffect(() => {
         const tripUsersRef = ref(db, `tripUsers/${tripId}`)

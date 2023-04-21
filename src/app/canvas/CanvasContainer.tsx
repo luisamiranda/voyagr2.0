@@ -10,10 +10,10 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 
-import {createStore, applyMiddleware} from 'redux'
+// import {createStore, applyMiddleware} from 'redux'
 // import {composeWithDevTools} from 'redux-devtools-extension'
 import logger from 'redux-logger'
-import rootReducer from '../reducers'
+// import rootReducer from '../reducers'
 
 import Canvas from './Canvas'
 import EditTools from './edit-tools/EditTools'
@@ -25,7 +25,8 @@ const CanvasContainer: React.FC =  () => {
     // const [canvasStore, setCanvasStore] = useState<any>();
     const [editable, setEditable] = useState<boolean>(false);
     const [uid,setUid] = useState<any>();
-    const [_, setCanEdit] = useState<boolean>(true);
+    // eslint-disable-next-line
+    const [canEdit, setCanEdit] = useState<boolean>(true);
     const [tripInfo, setTripInfo] = useState<any>();
     const [tripInfoRef, setTripInfoRef] = useState<any>();
     const [pageInfo, setPageInfo] = useState<any>();
@@ -34,7 +35,7 @@ const CanvasContainer: React.FC =  () => {
     const { tripId, pageId } = useParams();
 
         
-    const middlewares = [logger];
+    // const middlewares = [logger];
     
     // const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
