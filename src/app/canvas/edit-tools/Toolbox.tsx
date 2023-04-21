@@ -91,85 +91,88 @@ const Toolbox = ({ tripInfo, tripInfoRef, selected, tripId, pageInfo, pageInfoRe
         }
     
         update(tripInfoRef, infoToUpdate)
-      }
+    }
     
-      const handleTripInfoInput = (e: any) => {
-        const value = e.target.value
-        const type = e.target.name
-    
-        setType(value)
-      }
-    
-      const handleSizeChange = (e: any) => {
-        let elementToUpdateSize = {
-          size: e.target.value,
-          id: selected.id,
-          type: selected.type,
-        }
-    
-        setSize(elementToUpdateSize)
-      }
-    
-      const addNewTextBox = (e: any) => {
-        e.preventDefault()
-        
-        let newTextBox = {
-          [makeRandomId()]: {
-            top: 100,
-            left: 100,
-            size: 'small',
-            text: 'i went on a trip',
-          }
-        }
-    
-        createTextBox(newTextBox)
-      }
-    
-      const addVideo = (e: any) => {
-        console.log("VIDEOS", videos);
-        console.log("VIDEOKEYS", videoKeys)
-        let newVideo = {
-          [makeRandomId()]: {
-            source: e.target.getAttribute('id'),
-            top: 300,
-            left: 300,
-            size: 'medium',
-          }
-        }
-    
-        addAVideo(newVideo)
-      }
-    
-      const addPhoto = (e: any) => {
+    const handleTripInfoInput = (e: any) => {
+      const value = e.target.value
+      const type = e.target.name
 
-        let newPhoto = {
-          [makeRandomId()]: {
-            source: e.target.getAttribute("id"),
-            top: 200,
-            left: 200,
-            size: 'small',
-          }
+      setTitle(value.name)
+      setDescription(value.description)
+      setStartDate(value.startDate)
+      setType(type)
+    }
+    
+    const handleSizeChange = (e: any) => {
+      let elementToUpdateSize = {
+        size: e.target.value,
+        id: selected.id,
+        type: selected.type,
+      }
+  
+      setSize(elementToUpdateSize)
+    }
+  
+    const addNewTextBox = (e: any) => {
+      e.preventDefault()
+      
+      let newTextBox = {
+        [makeRandomId()]: {
+          top: 100,
+          left: 100,
+          size: 'small',
+          text: 'i went on a trip',
         }
-        addAPhoto(newPhoto)
       }
     
-      useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-              const uid = user.uid
+      createTextBox(newTextBox)
+    }
+    
+    const addVideo = (e: any) => {
+      console.log("VIDEOS", videos);
+      console.log("VIDEOKEYS", videoKeys)
+      let newVideo = {
+        [makeRandomId()]: {
+          source: e.target.getAttribute('id'),
+          top: 300,
+          left: 300,
+          size: 'medium',
+        }
+      }
+  
+      addAVideo(newVideo)
+    }
+    
+    const addPhoto = (e: any) => {
 
-              const dbUserPhotosRef = dbRef(db, `photos/${uid}`);
-              onValue(dbUserPhotosRef, (snapshot) => {
-                setPhotos(snapshot.val())
-              });
+      let newPhoto = {
+        [makeRandomId()]: {
+          source: e.target.getAttribute("id"),
+          top: 200,
+          left: 200,
+          size: 'small',
+        }
+      }
+      addAPhoto(newPhoto)
+    }
+  
+    useEffect(() => {
+      onAuthStateChanged(auth, (user) => {
+          if (user) {
+            const uid = user.uid
 
-              const dbUserVideoRef = dbRef(db, `videos/${uid}`);
-              onValue(dbUserVideoRef, (snapshot) => {
-                setVideos(snapshot.val());
-              })
-            }
-          })
-      },[])
+            const dbUserPhotosRef = dbRef(db, `photos/${uid}`);
+            onValue(dbUserPhotosRef, (snapshot) => {
+              setPhotos(snapshot.val())
+            });
+
+            const dbUserVideoRef = dbRef(db, `videos/${uid}`);
+            onValue(dbUserVideoRef, (snapshot) => {
+              setVideos(snapshot.val());
+            })
+          }
+        })
+    },[])
 
       return (
         <div id="toolbox-container">
@@ -261,7 +264,7 @@ const Toolbox = ({ tripInfo, tripInfoRef, selected, tripId, pageInfo, pageInfoRe
   
                   <Form.Group>
                     <Col smOffset={3} sm={10}>
-                      <Button type="submit">
+                      <Button type="submit" onSubmit={handleTripInfoSubmit}>
                         Submit
                       </Button>
                     </Col>
