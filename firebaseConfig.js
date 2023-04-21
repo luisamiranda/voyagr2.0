@@ -1,4 +1,4 @@
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: "AIzaSyCkGzYPNnBN1wgojYpMlid9S3yvDU52BsY",
     authDomain: "voyagr-59d3e.firebaseapp.com",
     databaseURL: "https://voyagr-59d3e.firebaseio.com",

@@ -54,7 +54,7 @@ if (module === require.main) {
   const server = app.listen(
     process.env.PORT || 1337,
     () => {
-      console.log(`--- Started HTTP Server for ${pkg.name} ---`)
+      console.log(`--- Started HTTP Server for voyagr ---`)
       const { address, port } = server.address()
       const host = address === '::' ? 'localhost' : address
       const urlSafeHost = host.includes(':') ? `[${host}]` : host

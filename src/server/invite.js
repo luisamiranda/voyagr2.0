@@ -2,14 +2,24 @@
 
 const router = require('express').Router()
 const admin = require('firebase-admin')
-
-const config = require('../../firebaseConfig')
 const { initializeApp } = require('firebase-admin/app');
-// const serviceAccount = require('APP/serviceAccountKey.json')
 
-const app = initializeApp();
+const firebaseConfig = {
+    apiKey: "AIzaSyCkGzYPNnBN1wgojYpMlid9S3yvDU52BsY",
+    authDomain: "voyagr-59d3e.firebaseapp.com",
+    databaseURL: "https://voyagr-59d3e.firebaseio.com",
+    projectId: "voyagr-59d3e",
+    storageBucket: "voyagr-59d3e.appspot.com",
+    messagingSenderId: "903756024411",
+    appId: "1:903756024411:web:11c69bb6e537dd6a214d7e",
+};
 
-const database = admin.database()
+const serviceAccount = require('../../serviceAccountKey.json')
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://voyagr-59d3e.firebaseio.com'
+})
 
 router.post('/', (req, res, next) => {
 	const email = req.body.email

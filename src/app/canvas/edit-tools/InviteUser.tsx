@@ -39,7 +39,7 @@ const InviteUser = ({ tripId, pageId }: InviteUserProps) => {
 	const handleSubmit = (e: any) => {
 		e.preventDefault()
 
-		// inviteUser(email, tripId)
+		inviteUser(email, tripId)
         // .then((status: any) => {
 		// 	if (status) {
 		// 		setShowInvalidAlert(true)

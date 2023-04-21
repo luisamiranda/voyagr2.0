@@ -8,7 +8,9 @@ export const inviteUser = (email: string, tripId: string) => {
 			if (res.data.code) return true
 			return false
 		})
-		.catch(console.error)
+		.catch((error) => {
+			console.log("ERRROR", error)
+		})
 }
 
 export const listUsers = (userId: string) => {
