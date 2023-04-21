@@ -4,7 +4,7 @@ import React,  {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import { auth, db } from '../../../index'
 import { onAuthStateChanged } from 'firebase/auth'
-import { onValue} from 'firebase/database'
+import { onValue, update} from 'firebase/database'
 import { ref as dbRef} from 'firebase/database'
 import { DefaultPlayer as Video} from 'react-html5video'
 
@@ -34,13 +34,13 @@ interface ToolboxProps {
 }
 
 const Toolbox = ({ tripInfo, tripInfoRef, selected, tripId, pageInfo, pageInfoRef, pageId }: ToolboxProps): JSX.Element => {
-    const [address, setAddress] = useState<any>();
+    // const [address, setAddress] = useState<any>();
     const [photos, setPhotos] = useState<any>();
     const [videos, setVideos] = useState<any>();
-    const [title, setTitle] = useState<any>();
-    const [description, setDescription] = useState<any>();
-    const [startDate, getStartDate] = useState<any>();
-    const [type, setType] = useState<any>();
+    const [title, _] = useState<any>();
+    const [description, _] = useState<any>();
+    const [startDate, _] = useState<any>();
+    const [_, setType] = useState<any>();
 
     const photoKeys = photos && Object.keys(photos)
     const videoKeys = videos && Object.keys(videos)
@@ -77,17 +77,17 @@ const Toolbox = ({ tripInfo, tripInfoRef, selected, tripId, pageInfo, pageInfoRe
         setElementZIndex(elementToUpdate)
     }
 
-    // const handleTripInfoSubmit = (e: any) => {
-    //     e.preventDefault()
+    const handleTripInfoSubmit = (e: any) => {
+        e.preventDefault()
     
-    //     const infoToUpdate = {
-    //       name: title,
-    //       description: description,
-    //       startDate: startDate
-    //     }
+        const infoToUpdate = {
+          name: title,
+          description: description,
+          startDate: startDate
+        }
     
-    //     tripInfoRef.update(infoToUpdate)
-    //   }
+        update(tripInfoRef, infoToUpdate)
+      }
     
       const handleTripInfoInput = (e: any) => {
         const value = e.target.value
@@ -181,7 +181,7 @@ const Toolbox = ({ tripInfo, tripInfoRef, selected, tripId, pageInfo, pageInfoRe
                   {photoKeys ? photoKeys.map((photoKey: any) => {
                     return (
                       <div className="drawer-photo" key={photoKey}>
-                        <img src={photos[photoKey].downloadURL} width={200}/>
+                        <img src={photos[photoKey].downloadURL} width={200} alt={photoKey}/>
                         <Button id={photos[photoKey].downloadURL} onClick={addPhoto}>+</Button>
                       </div>)
                   }) : null}
@@ -298,5 +298,5 @@ const Toolbox = ({ tripInfo, tripInfoRef, selected, tripId, pageInfo, pageInfoRe
 }
 
 const mapStateToProps = (state: any) => state
-export default Toolbox;
-// export default connect(mapStateToProps, { createTextBox, addAPhoto, setSize, addAVideo, setElementZIndex })(Toolbox)
+// export default Toolbox;
+export default connect(mapStateToProps, { createTextBox, addAPhoto, setSize, addAVideo, setElementZIndex })(Toolbox)

@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Button} from 'react-bootstrap'
-import { editBackgroundColor, editTextColor, setElementZIndex } from '../../reducers/elements'
+import { editBackgroundColor, editTextColor } from '../../reducers/elements' //setElementZIndex
 
 interface TextEditElementProps {
     elementId: any;

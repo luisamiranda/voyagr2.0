@@ -23,7 +23,7 @@ const Timeline: React.FC = () => {
                 console.log("USER", user.uid);
             }
         })
-    }, [auth]);
+    }, []);
 
     useEffect(() => {
         // get the ids of that user's trips
@@ -44,11 +44,11 @@ const Timeline: React.FC = () => {
                 onValue(tripIdRef, snap => {
                     // add the trips to the state
                     setTrips(snap.val())
-                    console.log("TRIPS", snap.val())
+                    return snap.val()
                 })
             })
         })
-    }, [user])
+    }, [uid])
 
 
 

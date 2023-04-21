@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Provider } from 'react-redux'
+// import { Provider } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import { auth, db } from '../../index'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -9,24 +9,23 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 import {createStore, applyMiddleware} from 'redux'
-import {composeWithDevTools} from 'redux-devtools-extension'
+// import {composeWithDevTools} from 'redux-devtools-extension'
 import logger from 'redux-logger'
 import rootReducer from '../reducers'
 
 import Canvas from './Canvas'
 import EditTools from './edit-tools/EditTools'
 import PageNavButtons from './PageNavButtons'
-import ViewEditToggle from './ViewEditToggle'
+// import ViewEditToggle from './ViewEditToggle'
 
 const CanvasContainer: React.FC =  () => {
     const [selected, setSelected] = useState<any>();
     // const [canvasStore, setCanvasStore] = useState<any>();
     const [editable, setEditable] = useState<boolean>(false);
     const [uid,setUid] = useState<any>();
-    const [canEdit, setCanEdit] = useState<boolean>(true);
+    const [_, setCanEdit] = useState<boolean>(true);
     const [tripInfo, setTripInfo] = useState<any>();
     const [tripInfoRef, setTripInfoRef] = useState<any>();
     const [pageInfo, setPageInfo] = useState<any>();
@@ -37,7 +36,7 @@ const CanvasContainer: React.FC =  () => {
         
     const middlewares = [logger];
     
-    const store = createStore(rootReducer, applyMiddleware(...middlewares));
+    // const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
     const navigate = useNavigate();
 
@@ -48,10 +47,10 @@ const CanvasContainer: React.FC =  () => {
             setUid(uid);
         }
         });
-    }, [uid, auth])
+    }, [uid])
 
     useEffect(() => {
-        const pageActionsRef = ref(db, `pageActions/${pageId}`);
+        // const pageActionsRef = ref(db, `pageActions/${pageId}`);
         const tripUsersRef = ref(db, `tripUsers/${tripId}`);
         const tripInfoRef = ref(db, `tripInfo/${tripId}`);
         const pageInfoRef = ref(db, `pageInfo/${pageId}`)
@@ -75,7 +74,7 @@ const CanvasContainer: React.FC =  () => {
             setEditable(isCollaborator);
             setCanEdit(isCollaborator);
         })
-    },[])
+    },[pageId, tripId, uid])
 
     const toggleMode = () => {
         console.log("TOGGLE CLICKED!")

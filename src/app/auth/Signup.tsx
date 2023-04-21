@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Navigate} from 'react-router-dom';
 
 import { auth, db } from '../../index'
@@ -26,7 +26,7 @@ const Signup: React.FC = () => {
   const handleEmailChange = (e: any) => {
     const input = e.target.value;
 
-    const emailRegex = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
+    const emailRegex = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$");
     const valid = input.match(emailRegex);
 
     if (valid) {

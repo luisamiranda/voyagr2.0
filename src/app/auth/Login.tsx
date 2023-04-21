@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
@@ -31,7 +31,7 @@ const Login: React.FC = () => {
   const handleEmailChange = (e: any) => {
     const input = e.target.value;
 
-    const emailRegex = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
+    const emailRegex = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$");
     const valid = input.match(emailRegex);
 
     if (valid) {
@@ -67,6 +67,7 @@ const Login: React.FC = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
       });
     }
   }
@@ -121,7 +122,7 @@ const Login: React.FC = () => {
           />
         </Form.Group>
 
-        <a onClick={resetPassword}>Forgot Password?</a>
+        <Button id="forgot-password" onClick={resetPassword}>Forgot Password?</Button>
         <br />
 
         <Button variant="primary" type="submit">

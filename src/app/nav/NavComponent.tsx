@@ -4,19 +4,15 @@ import { auth, db } from '../../index'
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { child, push, update } from 'firebase/database';
 import { ref as dbRef} from 'firebase/database';
-import { redirect } from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-// import { LinkContainer } from 'react-router-bootstrap'
-// import { browserHistory } from 'react-router'
-
 
 const NavComponent: React.FC = () => {
     const [user, setUser] = useState<any>();
     const [uid, setUid] = useState<any>();
-    const [tripId, setTripId] = useState<any>();
+    // const [tripId, setTripId] = useState<any>();
 
     const navigate = useNavigate();
 
@@ -28,7 +24,7 @@ const NavComponent: React.FC = () => {
             setUid(uid);
         }
         });
-    }, [user, auth])
+    }, [user])
 
 
     const logout = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import HTML5Backend from 'react-dnd-html5-backend'
+// import HTML5Backend from 'react-dnd-html5-backend'
 // import {DragDropContext} from 'react-dnd'
 // import CustomDragLayer from '../dndComponents/CustomDragLayer'
 import Page from '../page/Page'
@@ -12,8 +12,7 @@ export interface CanvasProps extends JSX.IntrinsicAttributes {
 }
 
 const Canvas = ({editable, selectElement, clearSelectedIfDeleted}: CanvasProps): JSX.Element => {
-    let edit = editable;
-    let sel
+    // let sel
     return (
       <div>
         <h3>This is the Canvas</h3>

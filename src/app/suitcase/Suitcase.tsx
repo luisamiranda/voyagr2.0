@@ -41,7 +41,7 @@ const Suitcase: React.FC = () => {
         navigate('/');
       }
     });
-  }, [user, auth, navigate])
+  }, [user, navigate])
   
   useEffect(() => {
     const photosRef = dbRef(db, `photos/${uid}`);
@@ -49,7 +49,7 @@ const Suitcase: React.FC = () => {
       const data = snapshot.val();
       setPhotos(data);
     });
-  }, [user, db])
+  }, [uid])
 
   useEffect(() => {
     const videosRef = dbRef(db, `videos/${uid}`);
@@ -57,7 +57,15 @@ const Suitcase: React.FC = () => {
       const data = snapshot.val();
       setVideos(data);
     });
-  }, [user, db])
+  }, [uid])
+
+  useEffect(() => {
+    const tripsRef = dbRef(db, `userTrips/${uid}`);
+    onValue(tripsRef, (snapshot) => {
+      const data = snapshot.val();
+      setTrips(data);
+    });
+  }, [uid])
 
   const handleUploadChange = (e: any) => {
     e.preventDefault();
@@ -115,7 +123,7 @@ const Suitcase: React.FC = () => {
                     display: 'inline-block',
                     margin: 1 + 'em',
                   }}>
-                    <img src={src} height="300px" />
+                    <img src={src} height="300px" alt={photoKey} />
                   </div>
                 )
               }) 

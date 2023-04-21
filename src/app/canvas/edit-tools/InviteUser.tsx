@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 // import update from 'react/lib/update'
-import { Alert, Button, Col, Form, FormControl, FormGroup, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Alert, Button, Col, Form, FormControl, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { inviteUser, listUsers } from '../../utils/inviteUser'
 import { db } from '../../../index'
 import { ref, get } from 'firebase/database'
@@ -13,7 +13,7 @@ const InviteUser = ({ tripId, pageId }: InviteUserProps) => {
     const [email, setEmail] = useState<any>();
     const [showInvalidAlert, setShowInvalidAlert] = useState<boolean>(false);
     const [showSuccessAlert, setShowSuccessAlert] = useState<boolean>(false);
-    const [collaboratorNames, setCollaboratorNames] = useState<any[]>();
+    const [collaboratorNames, _] = useState<any[]>();
 
     useEffect(() => {
         const tripUsersRef = ref(db, `tripUsers/${tripId}`)
@@ -28,7 +28,7 @@ const InviteUser = ({ tripId, pageId }: InviteUserProps) => {
                 .catch(console.error)
             }
         })
-    }, [])
+    }, [collaboratorNames, tripId])
 
 	const handleChange = (e:any) => {
 		setEmail(e.target.value);
