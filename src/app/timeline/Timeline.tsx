@@ -45,8 +45,8 @@ const Timeline: React.FC = () => {
                 onValue(tripIdRef, snap => {
                     // add the trips to the state
                     setTrips(snap.val())
-                    return snap.val()
                 })
+                return
             })
         })
     }, [uid])
