@@ -37,10 +37,10 @@ const Toolbox = ({ tripInfo, tripInfoRef, selected, tripId, pageInfo, pageInfoRe
     // const [address, setAddress] = useState<any>();
     const [photos, setPhotos] = useState<any>();
     const [videos, setVideos] = useState<any>();
-    const [title, _] = useState<any>();
-    const [description, _] = useState<any>();
-    const [startDate, _] = useState<any>();
-    const [_, setType] = useState<any>();
+    const [title, setTitle] = useState<any>();
+    const [description, setDescription] = useState<any>();
+    const [startDate, setStartDate] = useState<any>();
+    const [type, setType] = useState<any>();
 
     const photoKeys = photos && Object.keys(photos)
     const videoKeys = videos && Object.keys(videos)
@@ -49,7 +49,7 @@ const Toolbox = ({ tripInfo, tripInfoRef, selected, tripId, pageInfo, pageInfoRe
 
     let selectedElement;
     if (selected) {
-    //   selectedElement = elements[selected.type][selected.id]
+      // selectedElement = elements[selected.type][selected.id]
     }
 
     const makeRandomId = () => {
